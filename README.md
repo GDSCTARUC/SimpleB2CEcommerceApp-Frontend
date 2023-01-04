@@ -2,7 +2,7 @@
 
 This website is using Angular as its frontend framework.
 
-## Tech Stake
+## Tech Stacks
 
 1. HTML
 2. CSS (Tailwindcss, Flowbite)
