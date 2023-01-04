@@ -1,27 +1,23 @@
-# TodoAppFrontend
+# TodoApp Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.6.
+This website is using Angular as its frontend framework.
 
-## Development server
+## Tech Stake
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. HTML
+2. CSS (Tailwindcss, Flowbite)
+3. Typescript
 
-## Code scaffolding
+## How to use it?
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. git clone <https://github.com/GDSCTARUC/TodoApp-Frontend.git>
+2. npm i
+3. npm run start
 
-## Build
+## How to create a pull request?
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. git add [File/Files]
+2. git commit -m "commit message"
+3. git checkout -b your-branch (For newly create) or git checkout your-branch
+4. git push origin your-branch
+5. Open PR from your-branch in the GitHub website.
