@@ -1,18 +1,31 @@
-# TodoApp Frontend
+# SimpleB2CEcommerceApp Frontend
 
-This website is using Angular as its frontend framework.
+This website is built with angular.
 
 ## Tech Stacks
 
 1. HTML
 2. CSS (Tailwindcss, Flowbite)
-3. Typescript
+3. Angular (Typescript)
 
 ## How to use it?
+Install mkcert
+```bash
+1. winget install FiloSottile.mkcert
+2. restart powershell as administrator
+3. mkcert -install
+4. mkcert localhost
+```
 
-1. git clone <https://github.com/GDSCTARUC/TodoApp-Frontend.git>
-2. npm i
-3. npm run start
+Install npm dependencies
+```bash
+1. npm i
+```
+
+Run the project!
+```bash
+1. npm run start
+```
 
 ## How to create a pull request?
 
