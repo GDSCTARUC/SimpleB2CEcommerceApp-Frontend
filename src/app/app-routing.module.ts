@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { DefaultLayoutComponent } from './components/layouts/default-layout/default-layout.component';
+import { AccountComponent } from './pages/account/account.component';
+import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
 
 const routes: Routes = [
   {
@@ -9,13 +11,16 @@ const routes: Routes = [
     component: DefaultLayoutComponent,
     children: [
       {
-        path: '',
-        component: AppComponent,
+        path: 'account',
+        component: AccountComponent,
       },
       {
-        path: 'todo',
-        loadChildren: () =>
-          import('./pages/todo/todo.module').then((m) => m.TodoModule),
+        path: 'forbidden',
+        component: UnauthorizedComponent,
+      },
+      {
+        path: 'unauthorized',
+        component: UnauthorizedComponent,
       },
     ],
   },
