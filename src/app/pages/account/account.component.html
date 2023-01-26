@@ -1,51 +1,28 @@
-<h1 class="text-4xl font-semibold">Account</h1>
+<mat-card>
+	<mat-card-header>
+		<h1>Account State</h1>
+	</mat-card-header>
+	<hr class="mx-4 my-4" />
+	<mat-card-content>
+		<div *ngIf="isAuthenticated">
+			<button
+				mat-raised-button
+				color="primary"
+				(click)="refreshSession()">
+				Refresh Session
+			</button>
+		</div>
 
-<div class="mt-5">
-	<div *ngIf="isAuthenticated; else noAuth">
-		<button
-			(click)="refreshSession()"
-			type="button"
-			class="mr-2 mb-2 rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700">
-			Refresh Sessison
-		</button>
-		<button
-			(click)="logout()"
-			type="button"
-			class="mr-2 mb-2 rounded-lg bg-red-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-			Logout
-		</button>
-		<hr />
 		<br />
 
 		Is Authenticated: {{ isAuthenticated }}
 
 		<br />
+
 		User Data:
 		<pre>{{ userData$ | async | json }}</pre>
-	</div>
 
-	<ng-template #noAuth>
-		<button
-			(click)="login()"
-			type="button"
-			class="mr-2 mb-2 rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700">
-			Login
-		</button>
-		<button
-			(click)="loginWithPopup()"
-			type="button"
-			class="mr-2 mb-2 rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700">
-			Popup Login
-		</button>
-		<button
-			(click)="openWindow()"
-			type="button"
-			class="mr-2 mb-2 rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700">
-			Normal Popup
-		</button>
-		<hr />
-	</ng-template>
-</div>
-
-Configuration loaded:
-<pre>{{ configuration$ | async | json }}</pre>
+		Configuration loaded:
+		<pre>{{ configuration$ | async | json }}</pre>
+	</mat-card-content>
+</mat-card>

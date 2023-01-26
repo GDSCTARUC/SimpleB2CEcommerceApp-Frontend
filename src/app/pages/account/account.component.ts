@@ -45,23 +45,6 @@ export class AccountComponent implements OnInit {
 		this.oidcSecurityService.authorize();
 	}
 
-	loginWithPopup() {
-		this.oidcSecurityService
-			.authorizeWithPopUp()
-			.subscribe(
-				({ isAuthenticated, userData, accessToken, errorMessage }) => {
-					console.log(isAuthenticated);
-					console.log(userData);
-					console.log(accessToken);
-					console.log(errorMessage);
-				}
-			);
-	}
-
-	openWindow() {
-		window.open('/', '_blank');
-	}
-
 	logout() {
 		this.oidcSecurityService.logoff().subscribe(console.log);
 	}

@@ -1,48 +1,37 @@
+import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 
+import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { OidcUserData } from 'src/app/response/oidc-user-data';
+
 @Component({
-  selector: 'app-default-layout',
-  templateUrl: './default-layout.component.html',
-  styleUrls: ['./default-layout.component.css'],
+	selector: 'app-default-layout',
+	templateUrl: './default-layout.component.html',
+	styleUrls: ['./default-layout.component.css'],
 })
-export class DefaultLayoutComponent {
-  isDark: boolean = false;
+export class DefaultLayoutComponent implements OnInit {
+	// Auth State
+	isAuthenticated: boolean = false;
+	userData!: OidcUserData;
 
-  constructor() {
-    if (
-      localStorage.getItem('color-theme') === 'dark' ||
-      (!('color-theme' in localStorage) &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
-      document.documentElement.classList.add('dark');
-      this.isDark = true;
-    } else {
-      document.documentElement.classList.remove('dark');
-      this.isDark = false;
-    }
-  }
+	constructor(private oidcSecurityService: OidcSecurityService) {}
 
-  toggleTheme() {
-    if (localStorage.getItem('color-theme')) {
-      if (localStorage.getItem('color-theme') === 'light') {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('color-theme', 'dark');
-        this.isDark = true;
-      } else {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('color-theme', 'light');
-        this.isDark = false;
-      }
-    } else {
-      if (document.documentElement.classList.contains('dark')) {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('color-theme', 'light');
-        this.isDark = false;
-      } else {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('color-theme', 'dark');
-        this.isDark = true;
-      }
-    }
-  }
+	ngOnInit(): void {
+		if (!this.isAuthenticated) {
+			this.oidcSecurityService.checkAuth().subscribe((response) => {
+				this.isAuthenticated = response.isAuthenticated;
+
+				if (response.isAuthenticated) {
+					this.userData = {
+						id: response.userData.sub,
+						username: response.userData.profile.username,
+						firstName: response.userData.profile.first_name,
+						lastName: response.userData.profile.last_name,
+						email: response.userData.email,
+						emailVerified: response.userData.email_verified,
+					};
+				}
+			});
+		}
+	}
 }
