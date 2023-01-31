@@ -22,10 +22,8 @@ export class OidcGuard implements CanActivate {
 		route: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot
 	): Observable<boolean | UrlTree> {
-		return this.oidcSecurityService.checkAuth().pipe(
+		return this.oidcSecurityService.isAuthenticated$.pipe(
 			map(({ isAuthenticated }) => {
-				console.log(isAuthenticated);
-
 				if (isAuthenticated) {
 					return true;
 				}

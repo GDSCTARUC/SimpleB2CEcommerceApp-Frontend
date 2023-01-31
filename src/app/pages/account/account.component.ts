@@ -35,18 +35,12 @@ export class AccountComponent implements OnInit {
 		this.oidcSecurityService.isAuthenticated$.subscribe(
 			({ isAuthenticated }) => {
 				this.isAuthenticated = isAuthenticated;
-
-				console.warn('authenticated: ', isAuthenticated);
 			}
 		);
 	}
 
 	login() {
 		this.oidcSecurityService.authorize();
-	}
-
-	logout() {
-		this.oidcSecurityService.logoff().subscribe(console.log);
 	}
 
 	refreshSession() {
