@@ -4,6 +4,7 @@
 
 export const environment = {
 	production: false,
+	oidcProfile: 'angular',
 	urls: {
 		authUrl: 'https://localhost:4000',
 		apiUrl: 'https://localhost:5000',
