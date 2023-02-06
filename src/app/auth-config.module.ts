@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { AuthModule } from 'angular-auth-oidc-client';
 
 @NgModule({
 	imports: [
 		AuthModule.forRoot({
 			config: {
-				authority: 'https://localhost:4000',
+				authority: environment.urls.authUrl,
 				redirectUrl: window.location.origin,
 				postLogoutRedirectUri: window.location.origin,
 				clientId: 'frontend',
