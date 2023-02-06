@@ -83,7 +83,8 @@ export class ProductsUpdateComponent implements OnInit {
 							imageFileName: imageUpload.imageName,
 						})
 						.subscribe({
-							next: () => this.router.navigateByUrl('/admin'),
+							next: () =>
+								this.router.navigateByUrl('/ecommerce/admin'),
 							error: (err) => {
 								this.errorMessage = 'Product create failed';
 							},
@@ -103,7 +104,7 @@ export class ProductsUpdateComponent implements OnInit {
 					imageFileName: '',
 				})
 				.subscribe({
-					next: () => this.router.navigateByUrl('/admin'),
+					next: () => this.router.navigateByUrl('/ecommerce/admin'),
 					error: (err) => {
 						this.errorMessage = 'Product create failed';
 					},

@@ -59,7 +59,7 @@ export class ProductsCreateComponent {
 							imageFileName: imageUpload.imageName,
 						})
 						.subscribe({
-							next: () => this.router.navigateByUrl('/admin'),
+							next: () => this.router.navigateByUrl('/ecommerce/admin'),
 							error: (err) => {
 								this.errorMessage = 'Product create failed';
 							},
@@ -79,7 +79,7 @@ export class ProductsCreateComponent {
 					imageFileName: '',
 				})
 				.subscribe({
-					next: () => this.router.navigateByUrl('/admin'),
+					next: () => this.router.navigateByUrl('/ecommerce/admin'),
 					error: (err) => {
 						this.errorMessage = 'Product create failed';
 					},
