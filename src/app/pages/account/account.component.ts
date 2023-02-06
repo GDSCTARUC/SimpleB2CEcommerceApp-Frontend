@@ -44,6 +44,6 @@ export class AccountComponent implements OnInit {
 	}
 
 	refreshSession() {
-		this.oidcSecurityService.forceRefreshSession().subscribe(console.log);
+		this.oidcSecurityService.forceRefreshSession().subscribe();
 	}
 }

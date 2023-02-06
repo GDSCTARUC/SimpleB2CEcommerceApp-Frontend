@@ -1,0 +1,33 @@
+<div class="mt-10 flex flex-row flex-wrap gap-2">
+	<mat-card *ngFor="let product of products">
+		<mat-card-header>
+			<h1>{{ product.name }}</h1>
+		</mat-card-header>
+		<img
+			mat-card-image
+			[src]="imageFileUrl + product.imageFileName"
+			class="max-w-xs" />
+		<mat-card-content>
+			<h3>{{ product.description }}</h3>
+			<span
+				>RM
+				{{
+					(
+						product.originalPrice -
+						(product.originalPrice * product.discountPercentage) /
+							100
+					).toFixed(2)
+				}}</span
+			>
+		</mat-card-content>
+
+		<mat-card-actions>
+			<button
+				(click)="addToCart(product.id)"
+				mat-stroked-button
+				class="ml-2">
+				Add to cart
+			</button>
+		</mat-card-actions>
+	</mat-card>
+</div>

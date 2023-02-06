@@ -1,17 +1,12 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { EcommerceRoutingModule } from './ecommerce-routing.module';
 import { EcommerceComponent } from './ecommerce.component';
 
+import { SharedModule } from 'src/app/shared.module';
 
 @NgModule({
-  declarations: [
-    EcommerceComponent
-  ],
-  imports: [
-    CommonModule,
-    EcommerceRoutingModule
-  ]
+	declarations: [EcommerceComponent],
+	imports: [SharedModule, EcommerceRoutingModule],
 })
-export class EcommerceModule { }
+export class EcommerceModule {}

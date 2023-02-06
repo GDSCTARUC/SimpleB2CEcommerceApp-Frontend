@@ -1,8 +1,9 @@
 export interface OidcUserData {
-	id: string;
+	id: number;
 	username: string;
 	firstName: string;
 	lastName: string;
 	email: string;
-	emailVerified: false;
+	emailVerified: boolean;
+	isAdmin: boolean;
 }
