@@ -1,0 +1,16 @@
+{
+	"$schema": "http://json.schemastore.org/proxies",
+	"proxies": {
+		"callback": {
+			"matchCondition": {
+				"methods": ["GET"],
+				"route": "/"
+			},
+			"backendUri": "https://gdsctarumt-openid.azurewebsites.net",
+			"requestOverrides": {
+				"backend.request.querystring.code": "",
+				"backend.request.querystring._code": "{request.querystring.code}"
+			}
+		}
+	}
+}
