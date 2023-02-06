@@ -1,0 +1,75 @@
+<h1>Update Product</h1>
+
+<div class="container">
+	<form
+		(ngSubmit)="onFormSubmit($event)"
+		class="flex flex-col"
+		[formGroup]="productForm">
+		<mat-form-field>
+			<mat-label>Product Name</mat-label>
+			<input
+				matInput
+				formControlName="name"
+				[value]="productForm.get('description')" />
+			<mat-error
+				*ngIf="productForm.get('description')!.errors?.['required']">
+				Product Name is required
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Product Description</mat-label>
+			<textarea matInput formControlName="description"></textarea>
+			<mat-error
+				*ngIf="productForm.get('description')!.errors?.['required']">
+				Product Description is required
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Product Original Price</mat-label>
+			<input
+				type="number"
+				min="0"
+				matInput
+				formControlName="originalPrice" />
+			<mat-error
+				*ngIf="productForm.get('description')!.errors?.['required']">
+				Product Original Price is required
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Product Discount Percentage</mat-label>
+			<input
+				type="number"
+				min="0"
+				matInput
+				formControlName="discountPercentage" />
+			<mat-error
+				*ngIf="productForm.get('description')!.errors?.['required']">
+				Product Discount Percentage is required
+			</mat-error>
+		</mat-form-field>
+
+		<label
+			class="mb-2 block text-sm font-medium text-gray-900"
+			for="file_input"
+			>Upload file</label
+		>
+		<input
+			(change)="onFileChange($event)"
+			class="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 focus:outline-none"
+			aria-describedby="file_input_help"
+			type="file" />
+		<span>Image File Location: {{ imageFileUrl }}{{ imageFileName }}</span>
+
+		<button
+			type="submit"
+			mat-stroked-button
+			[disabled]="!productForm.valid"
+			class="mt-5">
+			Update Product
+		</button>
+	</form>
+</div>

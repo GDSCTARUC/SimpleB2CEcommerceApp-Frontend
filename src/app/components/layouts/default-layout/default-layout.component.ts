@@ -1,8 +1,7 @@
-import { OnInit } from '@angular/core';
-import { Component } from '@angular/core';
-
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { OidcUserData } from 'src/app/response/oidc-user-data';
+
+import { Component, OnInit } from '@angular/core';
 
 @Component({
 	selector: 'app-default-layout',
@@ -12,7 +11,15 @@ import { OidcUserData } from 'src/app/response/oidc-user-data';
 export class DefaultLayoutComponent implements OnInit {
 	// Auth State
 	isAuthenticated: boolean = false;
-	userData!: OidcUserData;
+	userData: OidcUserData = {
+		id: 0,
+		username: '',
+		firstName: '',
+		lastName: '',
+		email: '',
+		emailVerified: false,
+		isAdmin: false,
+	};
 
 	constructor(private oidcSecurityService: OidcSecurityService) {}
 
@@ -27,6 +34,7 @@ export class DefaultLayoutComponent implements OnInit {
 						username: response.userData.profile.username,
 						firstName: response.userData.profile.first_name,
 						lastName: response.userData.profile.last_name,
+						isAdmin: response.userData.profile.is_admin,
 						email: response.userData.email,
 						emailVerified: response.userData.email_verified,
 					};

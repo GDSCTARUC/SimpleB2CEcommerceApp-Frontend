@@ -11,8 +11,16 @@
 		<div class="flex gap-3">
 			<button mat-button [matMenuTriggerFor]="menu">E-commerce</button>
 			<mat-menu #menu="matMenu" xPosition="before">
-				<button mat-menu-item routerLink="/ecommerce">Home</button>
-				<button mat-menu-item>Cart</button>
+				<button
+					*ngIf="userData.isAdmin"
+					mat-menu-item
+					routerLink="/ecommerce/admin">
+					Admin Panel
+				</button>
+				<button mat-menu-item routerLink="/ecommerce/cart">Cart</button>
+				<button mat-menu-item routerLink="/ecommerce/products">
+					Products
+				</button>
 			</mat-menu>
 
 			<div *ngIf="isAuthenticated; else noAuth">

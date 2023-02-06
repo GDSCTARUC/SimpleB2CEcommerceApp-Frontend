@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AuthConfigModule } from './auth-config.module';
 import { AbstractSecurityStorage } from 'angular-auth-oidc-client';
 import { LocalstoreService } from './components/oidc/localstorge-service.service';
 
@@ -15,12 +15,12 @@ import { LoginComponent } from './pages/login/login.component';
 import { LogoutComponent } from './pages/logout/logout.component';
 import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
 
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatCardModule } from '@angular/material/card';
+import { SharedModule } from './shared.module';
+import { CartService } from './services/cart-service.service';
+import { ProductService } from './services/product-service.service';
+import { OidcInterceptor } from './components/oidc/interceptor/oidc-interceptor.interceptor';
 import { OidcGuard } from './components/oidc/guards/oidc-guard.guard';
+import { AuthConfigModule } from './auth-config.module';
 
 @NgModule({
 	declarations: [
@@ -33,22 +33,25 @@ import { OidcGuard } from './components/oidc/guards/oidc-guard.guard';
 		UnauthorizedComponent,
 	],
 	imports: [
+		SharedModule,
+		AuthConfigModule,
 		BrowserModule,
 		BrowserAnimationsModule,
 		AppRoutingModule,
-		AuthConfigModule,
-		MatButtonModule,
-		MatIconModule,
-		MatToolbarModule,
-		MatMenuModule,
-		MatCardModule,
 	],
 	providers: [
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: OidcInterceptor,
+			multi: true,
+		},
 		{
 			provide: AbstractSecurityStorage,
 			useClass: LocalstoreService,
 		},
 		OidcGuard,
+		CartService,
+		ProductService,
 	],
 	bootstrap: [AppComponent],
 })
