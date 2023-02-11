@@ -1,55 +1,111 @@
-<mat-toolbar color="primary">
-	<div class="container mx-auto flex items-center justify-between">
-		<a routerLink="/">
-			<img
-				src="assets/img/logo/dsc_logo.png"
-				alt="Google DSC Logo"
-				class="mr-4 inline-block h-14" />
-			<span>Google DSC TARUMT</span>
-		</a>
-
-		<div class="flex gap-3">
-			<button mat-button [matMenuTriggerFor]="menu">E-commerce</button>
-			<mat-menu #menu="matMenu" xPosition="before">
-				<button
-					*ngIf="userData.isAdmin"
-					mat-menu-item
-					routerLink="/ecommerce/admin">
-					Admin Panel
-				</button>
-				<button mat-menu-item routerLink="/ecommerce/cart">Cart</button>
-				<button mat-menu-item routerLink="/ecommerce/products">
-					Products
-				</button>
-			</mat-menu>
-
+<mat-sidenav-container>
+	<mat-sidenav #sidenav role="navigation" class="min-w-[200px]">
+		<mat-nav-list>
 			<div *ngIf="isAuthenticated; else noAuth">
-				<button mat-button [matMenuTriggerFor]="menu">
+				<button mat-list-item>
 					Welcome {{ userData.username | titlecase }} !
 				</button>
-				<mat-menu #menu="matMenu" xPosition="before">
-					<button mat-menu-item routerLink="/logout">Logout</button>
-					<button mat-menu-item routerLink="/account">
-						Account Panel
-					</button>
-				</mat-menu>
+				<a routerLink="/logout">
+					<button mat-list-item>Logout</button>
+				</a>
+				<a routerLink="/account">
+					<button mat-list-item>Account Panel</button>
+				</a>
 			</div>
 
 			<ng-template #noAuth>
-				<button mat-button [matMenuTriggerFor]="menu">
-					Welcome Guest!
-				</button>
-				<mat-menu #menu="matMenu" xPosition="before">
-					<button mat-menu-item routerLink="/login">Login</button>
-					<button mat-menu-item routerLink="/account">
-						Account Panel
-					</button>
-				</mat-menu>
+				<button mat-list-item>Welcome Guest!</button>
+				<a routerLink="/login">
+					<button mat-list-item>Login</button>
+				</a>
+				<a routerLink="/account">
+					<button mat-list-item>Account Panel</button>
+				</a>
 			</ng-template>
-		</div>
-	</div>
-</mat-toolbar>
 
-<div class="container mx-auto mt-10 mb-10">
-	<router-outlet></router-outlet>
-</div>
+			<hr />
+
+			<a *ngIf="userData.isAdmin" routerLink="/ecommerce/admin">
+				<button mat-list-item>Admin Panel</button>
+			</a>
+			<a routerLink="/ecommerce/cart">
+				<button mat-list-item>Cart</button>
+			</a>
+			<a routerLink="/ecommerce/products">
+				<button mat-list-item>Products</button>
+			</a>
+		</mat-nav-list>
+	</mat-sidenav>
+	<mat-sidenav-content>
+		<mat-toolbar color="primary">
+			<div class="container mx-auto flex items-center justify-between">
+				<div class="flex flex-row items-center">
+					<div class="md:hidden">
+						<button mat-icon-button (click)="sidenav.toggle()">
+							<mat-icon>menu</mat-icon>
+						</button>
+					</div>
+					<a routerLink="/">
+						<img
+							src="assets/img/logo/dsc_logo.png"
+							alt="Google DSC Logo"
+							class="mr-4 inline-block h-14" />
+						<span>Google DSC TARUMT</span>
+					</a>
+				</div>
+
+				<div class="hidden gap-3 md:flex">
+					<button mat-button [matMenuTriggerFor]="menu">
+						E-commerce
+					</button>
+					<mat-menu #menu="matMenu" xPosition="before">
+						<button
+							*ngIf="userData.isAdmin"
+							mat-menu-item
+							routerLink="/ecommerce/admin">
+							Admin Panel
+						</button>
+						<button mat-menu-item routerLink="/ecommerce/cart">
+							Cart
+						</button>
+						<button mat-menu-item routerLink="/ecommerce/products">
+							Products
+						</button>
+					</mat-menu>
+
+					<div *ngIf="isAuthenticated; else noAuth">
+						<button mat-button [matMenuTriggerFor]="menu">
+							Welcome {{ userData.username | titlecase }} !
+						</button>
+						<mat-menu #menu="matMenu" xPosition="before">
+							<button mat-menu-item routerLink="/logout">
+								Logout
+							</button>
+							<button mat-menu-item routerLink="/account">
+								Account Panel
+							</button>
+						</mat-menu>
+					</div>
+
+					<ng-template #noAuth>
+						<button mat-button [matMenuTriggerFor]="menu">
+							Welcome Guest!
+						</button>
+						<mat-menu #menu="matMenu" xPosition="before">
+							<button mat-menu-item routerLink="/login">
+								Login
+							</button>
+							<button mat-menu-item routerLink="/account">
+								Account Panel
+							</button>
+						</mat-menu>
+					</ng-template>
+				</div>
+			</div>
+		</mat-toolbar>
+
+		<div class="container mx-auto mt-10 mb-10 min-h-screen">
+			<router-outlet></router-outlet>
+		</div>
+	</mat-sidenav-content>
+</mat-sidenav-container>
