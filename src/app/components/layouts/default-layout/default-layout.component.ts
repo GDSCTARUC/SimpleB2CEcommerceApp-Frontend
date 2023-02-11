@@ -1,7 +1,7 @@
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { OidcUserData } from 'src/app/response/oidc-user-data';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
 	selector: 'app-default-layout',
@@ -9,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./default-layout.component.css'],
 })
 export class DefaultLayoutComponent implements OnInit {
+	sidenavToggle = new EventEmitter();
+
 	// Auth State
 	isAuthenticated: boolean = false;
 	userData: OidcUserData = {
@@ -41,5 +43,9 @@ export class DefaultLayoutComponent implements OnInit {
 				}
 			});
 		}
+	}
+
+	public onToggleSidenav() {
+		this.sidenavToggle.emit();
 	}
 }
